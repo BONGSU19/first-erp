@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <!-- 공통 레이아웃 -->
+    <definition name="base"
+                template="/WEB-INF/views/layout/layout.jsp">
+
+        <put-attribute
+                name="title"
+                value="ERP System"/>
+
+        <put-attribute
+                name="sidebar"
+                value="/WEB-INF/views/common/sidebar.jsp"/>
+
+        <put-attribute
+                name="header"
+                value="/WEB-INF/views/common/header.jsp"/>
+
+        <put-attribute
+                name="body"
+                value=""/>
+
+    </definition>
+
+    <!-- 대시보드 화면 -->
+    <definition name="main"
+                extends="base">
+
+        <put-attribute
+                name="title"
+                value="ERP Dashboard"/>
+
+        <put-attribute
+                name="body"
+                value="/WEB-INF/views/main.jsp"/>
+
+        <put-attribute
+                name="css"
+                value="/WEB-INF/views/main-css.jsp"/>
+
+    </definition>
+
+</tiles-definitions>

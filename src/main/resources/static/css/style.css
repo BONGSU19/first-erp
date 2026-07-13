@@ -1,0 +1,147 @@
+.screen {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  background-color: var(--fifth);
+}
+
+.screen .mail-input {
+  position: absolute;
+  top: 304px;
+  left: 545px;
+  width: 350px;
+  height: 69px;
+  display: flex;
+}
+
+.screen .input-big {
+  flex: 1;
+  width: 350px;
+  position: relative;
+}
+
+.screen .rectangle {
+  height: 63.77%;
+  top: 36.23%;
+  border: 1px solid;
+  border-color: var(--third);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border-radius: 20px;
+}
+
+.screen .mail {
+  position: absolute;
+  width: 96.57%;
+  height: 24.64%;
+  top: 55.07%;
+  left: 3.43%;
+  font-family: var(--body-3-font-family);
+  font-weight: var(--body-3-font-weight);
+  color: #485570;
+  font-size: var(--body-3-font-size);
+  letter-spacing: var(--body-3-letter-spacing);
+  line-height: var(--body-3-line-height);
+  white-space: nowrap;
+  font-style: var(--body-3-font-style);
+}
+
+.screen .text-wrapper {
+  position: absolute;
+  width: 11.14%;
+  height: 24.64%;
+  top: 0;
+  left: 0;
+  font-family: var(--title-2-font-family);
+  font-weight: var(--title-2-font-weight);
+  color: var(--third);
+  font-size: var(--title-2-font-size);
+  letter-spacing: var(--title-2-letter-spacing);
+  line-height: var(--title-2-line-height);
+  white-space: nowrap;
+  font-style: var(--title-2-font-style);
+}
+
+.screen .input-big-wrapper {
+  position: absolute;
+  top: 397px;
+  left: 545px;
+  width: 350px;
+  height: 69px;
+  display: flex;
+}
+
+.screen .div {
+  position: absolute;
+  width: 14.86%;
+  height: 24.64%;
+  top: 0;
+  left: 0;
+  font-family: var(--title-2-font-family);
+  font-weight: var(--title-2-font-weight);
+  color: var(--third);
+  font-size: var(--title-2-font-size);
+  letter-spacing: var(--title-2-letter-spacing);
+  line-height: var(--title-2-line-height);
+  white-space: nowrap;
+  font-style: var(--title-2-font-style);
+}
+
+.screen .password-input {
+  position: absolute;
+  top: 441px;
+  left: 557px;
+  width: 350px;
+  height: 34px;
+}
+
+.screen .sign-in {
+  position: absolute;
+  top: 498px;
+  left: calc(50.00% - 175px);
+  width: 350px;
+  height: 44px;
+  background-color: var(--second);
+  border-radius: 20px;
+}
+
+.screen .rectangle-2 {
+  height: 100%;
+  top: 0;
+  background-color: #02437b;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  border-radius: 20px;
+}
+
+.screen .text-wrapper-2 {
+  position: absolute;
+  height: 45.45%;
+  top: 27.27%;
+  left: calc(50.00% - 22px);
+  font-family: var(--subtitle-2-font-family);
+  font-weight: var(--subtitle-2-font-weight);
+  color: #eff4ff;
+  font-size: var(--subtitle-2-font-size);
+  text-align: center;
+  letter-spacing: var(--subtitle-2-letter-spacing);
+  line-height: var(--subtitle-2-line-height);
+  white-space: nowrap;
+  font-style: var(--subtitle-2-font-style);
+}
+
+.screen .text-wrapper-3 {
+  position: absolute;
+  top: 200px;
+  left: calc(50.00% - 175px);
+  font-family: var(--heading-2-font-family);
+  font-weight: var(--heading-2-font-weight);
+  color: var(--second);
+  font-size: var(--heading-2-font-size);
+  letter-spacing: var(--heading-2-letter-spacing);
+  line-height: var(--heading-2-line-height);
+  white-space: nowrap;
+  font-style: var(--heading-2-font-style);
+}

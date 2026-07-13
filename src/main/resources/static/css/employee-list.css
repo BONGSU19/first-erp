@@ -1,0 +1,383 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #263746;
+    background: #dcecf3;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 왼쪽 사이드바 */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    height: 100vh;
+    padding: 20px;
+    color: white;
+    background: #004b83;
+}
+
+.sidebar h1,
+.sidebar h2,
+.sidebar-title {
+    margin: 0 0 40px;
+    font-size: 18px;
+}
+
+.sidebar ul,
+.sidebar-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    padding: 0;
+    font-size: 14px;
+}
+
+.sidebar li a {
+    display: block;
+    padding: 15px 5px;
+    color: white;
+    border-radius: 6px;
+}
+
+.sidebar li a:hover,
+.sidebar li.active a {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.sidebar-user,
+.logout {
+    position: absolute;
+    right: 20px;
+    bottom: 40px;
+    left: 20px;
+    font-size: 13px;
+}
+
+.sidebar-user p {
+    margin: 0;
+}
+
+.logout-button,
+.logout button {
+    margin-top: 10px;
+    padding: 5px 15px;
+    color: white;
+    background: none;
+    border: 1px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logout-button:hover,
+.logout button:hover {
+    color: #004b83;
+    background: white;
+}
+
+/* 메인 영역 */
+
+.main-content {
+    min-height: 100vh;
+    margin-left: 220px;
+    padding: 20px 35px;
+}
+
+/* 상단 헤더 */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+    padding: 12px 20px;
+    color: white;
+    background: #00558f;
+}
+
+.top-header h2 {
+    margin: 0 0 5px;
+    font-size: 21px;
+}
+
+.top-header p {
+    margin: 0;
+    color: #d6ebf8;
+    font-size: 12px;
+}
+
+.header-user {
+    font-size: 14px;
+}
+
+/* 검색 영역 */
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-form label {
+    color: #00558f;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.search-form select {
+    width: 160px;
+    height: 36px;
+    padding: 0 10px;
+    background: white;
+    border: 1px solid #c5d4de;
+    border-radius: 6px;
+    outline: none;
+}
+
+.search-form select:focus {
+    border-color: #00558f;
+}
+
+/* 버튼 */
+
+.search-button,
+.reset-button,
+.register-button,
+.edit-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    padding: 0 15px;
+    border: 0;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.search-button {
+    color: white;
+    background: #00558f;
+}
+
+.search-button:hover {
+    background: #004b83;
+}
+
+.reset-button {
+    color: #526773;
+    background: #e9f0f4;
+}
+
+.reset-button:hover {
+    background: #d8e4ea;
+}
+
+.register-button {
+    color: white;
+    background: #187c5a;
+}
+
+.register-button:hover {
+    background: #106447;
+}
+
+/* 처리 메시지 */
+
+.alert {
+    margin-top: 15px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.alert.success {
+    color: #236642;
+    background: #e6f6ed;
+}
+
+.alert.error {
+    color: #a33333;
+    background: #fde8e8;
+}
+
+/* 사원 목록 박스 */
+
+.employee-section {
+    margin-top: 20px;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.section-header h3 {
+    margin: 0;
+    color: #00558f;
+    font-size: 17px;
+}
+
+.section-header span {
+    color: #777;
+    font-size: 12px;
+}
+
+/* 테이블 */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.employee-table {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.employee-table th {
+    padding: 12px 10px;
+    color: #777;
+    background: #f3f8fa;
+    text-align: left;
+    border-bottom: 1px solid #dce6eb;
+}
+
+.employee-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.employee-table tbody tr:hover {
+    background: #f5fafc;
+}
+
+/* 권한 표시 */
+
+.role {
+    display: inline-block;
+    min-width: 68px;
+    padding: 5px 9px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 11px;
+}
+
+.role.admin {
+    color: #a13b32;
+    background: #ffe9e6;
+}
+
+.role.user {
+    color: #00558f;
+    background: #e1f1fa;
+}
+
+/* 수정 버튼 */
+
+.edit-button {
+    height: 29px;
+    padding: 0 12px;
+    color: white;
+    background: #236ca8;
+}
+
+.edit-button:hover {
+    background: #00558f;
+}
+
+.no-permission {
+    color: #999;
+}
+
+.empty-message {
+    height: 130px;
+    color: #777;
+    text-align: center;
+}
+
+/* 반응형 */
+
+@media (max-width: 850px) {
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sidebar-user,
+    .logout {
+        position: static;
+        margin-top: 20px;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 550px) {
+    .main-content {
+        padding: 12px;
+    }
+
+    .top-header {
+        align-items: flex-start;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .search-form {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .search-form select,
+    .search-button,
+    .reset-button,
+    .register-button {
+        width: 100%;
+    }
+}
