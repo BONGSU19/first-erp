@@ -13,4 +13,17 @@ public interface MemberRepository extends JpaRepository<EmployeeEntity, String> 
     EmployeeEntity findByEmpId(String empId);
     
     List<EmployeeEntity> findByDeptName(String deptName);
+    
+    // 사번 일부 검색
+    List<EmployeeEntity> findByEmpNameContainingIgnoreCase(
+        String empId
+    );
+
+    // 부서와 사번을 동시에 검색
+    List<EmployeeEntity>
+    findByDeptNameAndEmpNameContainingIgnoreCase(
+            String deptName,
+            String empId
+        );
+    
 }

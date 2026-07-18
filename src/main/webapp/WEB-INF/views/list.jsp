@@ -8,207 +8,116 @@
 <%@ taglib prefix="sec"
            uri="http://www.springframework.org/security/tags" %>
 
-<!DOCTYPE html>
-<html lang="ko">
+<!-- 검색 및 등록 -->
+<section class="toolbar">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <form class="search-form"
+          method="get"
+          action="${pageContext.request.contextPath}/employees">
 
-    <title>사원 관리</title>
+        <label for="deptname">부서</label>
 
-    <link rel="stylesheet"
-          href="${pageContext.request.contextPath}/css/employee-list.css">
-</head>
+        <select id="deptName" name="deptName">
 
-<body>
+            <option value=""
+                    ${empty selectedDept ? 'selected' : ''}>
+                전체 부서
+            </option>
 
-<div class="layout">
+            <option value="인사팀"
+                    ${selectedDept eq '인사팀' ? 'selected' : ''}>
+                인사팀
+            </option>
 
-    <!-- 사이드바 -->
-    <aside class="sidebar">
+            <option value="개발팀"
+                    ${selectedDept eq '개발팀' ? 'selected' : ''}>
+                개발팀
+            </option>
 
-        <h1 class="sidebar-title">ERP Dashboard</h1>
+            <option value="자재팀"
+                    ${selectedDept eq '자재팀' ? 'selected' : ''}>
+                자재팀
+            </option>
 
-        <nav>
-            <ul class="sidebar-menu">
+        </select>
+			    <label for="empId">이름</label>
 
-                <li>
-                    <a href="${pageContext.request.contextPath}/main">
-                        ▦ 대시보드
-                    </a>
-                </li>
+    <input type="text"
+           id="empId"
+      
+           name="empName"
+           value="<c:out value='${selectedEmpId}'/>"
+           placeholder="예: 서민수">
+        <button type="submit" class="search-button">
+            조회
+        </button>
 
-                <li class="active">
-                    <a href="${pageContext.request.contextPath}/employees">
-                        ♙ 인사 관리
-                    </a>
-                </li>
+        <a href="${pageContext.request.contextPath}/employees"
+           class="reset-button">
+            초기화
+        </a>
 
-                <li>
-                    <a href="${pageContext.request.contextPath}/attendance">
-                        ◷ 근태 관리
-                    </a>
-                </li>
+    </form>
 
-                <li>
-                    <a href="${pageContext.request.contextPath}/materials">
-                        ▣ 자재 관리
-                    </a>
-                </li>
+    <sec:authorize access="hasRole('ADMIN')">
+        <a href="${pageContext.request.contextPath}/employeesRegister"
+           class="register-button">
+            신규 사원 등록
+        </a>
+    </sec:authorize>
 
-                <li>
-                    <a href="${pageContext.request.contextPath}/approvals">
-                        ✓ 전자결재
-                    </a>
-                </li>
+</section>
 
-            </ul>
-        </nav>
+<!-- 처리 결과 -->
+<c:if test="${not empty message}">
+    <div class="alert success">
+        <c:out value="${message}"/>
+    </div>
+</c:if>
 
-        <div class="sidebar-user">
+<c:if test="${not empty error}">
+    <div class="alert error">
+        <c:out value="${error}"/>
+    </div>
+</c:if>
 
-            <p>
-                <strong>${dashboard.empName}</strong>님
-            </p>
+<!-- 사원 목록 -->
+<section class="employee-section">
 
-            <form action="${pageContext.request.contextPath}/logout"
-                  method="post">
+    <div class="section-header">
+        <h3>사원 목록</h3>
+        <span>총 ${employees.size()}명</span>
+    </div>
 
-                <c:if test="${not empty _csrf}">
-                    <input type="hidden"
-                           name="${_csrf.parameterName}"
-                           value="${_csrf.token}">
-                </c:if>
+    <div class="table-wrapper">
 
-                <button type="submit" class="logout-button">
-                    로그아웃
-                </button>
-            </form>
+        <table class="employee-table">
 
-        </div>
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>사번</th>
+                <th>이름</th>
+                <th>부서</th>
+                <th>권한</th>
+                <th>관리</th>
+            </tr>
+            </thead>
 
-    </aside>
+            <tbody>
 
-    <!-- 메인 영역 -->
-    <main class="main-content">
+            <c:choose>
 
-        <header class="top-header">
-
-            <div>
-                <h2>인사 관리</h2>
-                <p>사원 정보를 조회하고 관리합니다.</p>
-            </div>
-
-            <div class="header-user">
-                👤 ${dashboard.empName}님
-            </div>
-
-        </header>
-
-        <!-- 검색 및 등록 영역 -->
-        <section class="toolbar">
-
-            <form class="search-form"
-                  method="get"
-                  action="${pageContext.request.contextPath}/employees">
-
-                <label for="deptname">부서</label>
-
-                <select id="deptname" name="deptname">
-
-                    <option value=""
-                        ${empty selectedDept ? 'selected' : ''}>
-                        전체 부서
-                    </option>
-
-                    <option value="인사팀"
-                        ${selectedDept eq '인사팀' ? 'selected' : ''}>
-                        인사팀
-                    </option>
-
-                    <option value="개발팀"
-                        ${selectedDept eq '개발팀' ? 'selected' : ''}>
-                        개발팀
-                    </option>
-
-                    <option value="자재팀"
-                        ${selectedDept eq '자재팀' ? 'selected' : ''}>
-                        자재팀
-                    </option>
-
-                </select>
-
-                <button type="submit" class="search-button">
-                    조회
-                </button>
-
-                <a href="${pageContext.request.contextPath}/employees"
-                   class="reset-button">
-                    초기화
-                </a>
-
-            </form>
-
-            <!-- 관리자에게만 사원 등록 버튼 표시 -->
-            <sec:authorize access="hasRole('ADMIN')">
-                <a href="${pageContext.request.contextPath}/employees/new"
-                   class="register-button">
-                    신규 사원 등록
-                </a>
-            </sec:authorize>
-
-        </section>
-
-        <!-- 처리 결과 메시지 -->
-        <c:if test="${not empty message}">
-            <div class="alert success">
-                <c:out value="${message}"/>
-            </div>
-        </c:if>
-
-        <c:if test="${not empty error}">
-            <div class="alert error">
-                <c:out value="${error}"/>
-            </div>
-        </c:if>
-
-        <!-- 사원 목록 -->
-        <section class="employee-section">
-
-            <div class="section-header">
-                <h3>사원 목록</h3>
-                <span>총 ${employees.size()}명</span>
-            </div>
-
-            <div class="table-wrapper">
-
-                <table class="employee-table">
-
-                    <thead>
+                <c:when test="${empty employees}">
                     <tr>
-                        <th>번호</th>
-                        <th>사번</th>
-                        <th>이름</th>
-                        <th>부서</th>
-                        <th>권한</th>
-                        <th>관리</th>
+                        <td colspan="6" class="empty-message">
+                            조회된 사원이 없습니다.
+                        </td>
                     </tr>
-                    </thead>
+                </c:when>
 
-                    <tbody>
+                <c:otherwise>
 
-                    <!-- 조회 결과가 없는 경우 -->
-                    <c:if test="${empty employees}">
-                        <tr>
-                            <td colspan="6" class="empty-message">
-                                조회된 사원이 없습니다.
-                            </td>
-                        </tr>
-                    </c:if>
-
-                    <!-- 사원 목록 반복 출력 -->
                     <c:forEach var="employee"
                                items="${employees}"
                                varStatus="status">
@@ -230,14 +139,20 @@
 
                             <td>
                                 <c:choose>
+
                                     <c:when test="${employee.role eq 'ROLE_ADMIN'
                                                    or employee.role eq 'ADMIN'}">
-                                        <span class="role admin">관리자</span>
+                                        <span class="role admin">
+                                            관리자
+                                        </span>
                                     </c:when>
 
                                     <c:otherwise>
-                                        <span class="role user">일반 사원</span>
+                                        <span class="role user">
+                                            일반 사원
+                                        </span>
                                     </c:otherwise>
+
                                 </c:choose>
                             </td>
 
@@ -257,15 +172,14 @@
 
                     </c:forEach>
 
-                    </tbody>
-                </table>
+                </c:otherwise>
 
-            </div>
-        </section>
+            </c:choose>
 
-    </main>
+            </tbody>
 
-</div>
+        </table>
 
-</body>
-</html>
+    </div>
+
+</section>

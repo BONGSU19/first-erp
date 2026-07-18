@@ -19,6 +19,7 @@ public class EmployeeEntity {
     private String deptName;  // 부서코드
     private String role;      // 권한 (ROLE_USER, ROLE_ADMIN)
     private int passwordChanged; // 기본값은 false(바꾸기 전)
+    private String positionName;
     
     
 }

@@ -7,8 +7,15 @@
     <input type="text"
            placeholder="Search">
 
-    <span>
-        🔔 👤 ${dashboard.empName}
+<a class="header-user"
+   href="${pageContext.request.contextPath}/mypage">
+
+    <span class="user-icon">👤</span>
+
+    <span class="user-name">
+        ${dashboard.empName}
     </span>
+
+</a>
 
 </header>

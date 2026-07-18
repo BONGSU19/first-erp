@@ -46,4 +46,219 @@
 
     </definition>
 
+
+    <definition name="employees"
+                extends="base">
+
+        <put-attribute
+                name="title"
+                value="employees"/>
+
+        <put-attribute
+                name="body"
+                value="/WEB-INF/views/list.jsp"/>
+
+        <put-attribute
+                name="css"
+                value="/WEB-INF/views/list-css.jsp"/>
+
+    </definition>
+
+
+<definition name="employeeRegister"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="신규 사원 등록"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/employee-register.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/employee-register-css.jsp"/>
+
+</definition>
+
+<definition name="edit" extends="base">
+    <put-attribute name="title" value="사원 정보 수정"/>
+    <put-attribute name="body"
+                   value="/WEB-INF/views/edit.jsp"/>
+    <put-attribute name="css"
+                   value="/WEB-INF/views/edit-css.jsp"/>
+</definition>
+
+
+<definition name="materials"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="자재 관리"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/material-list.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/material-css.jsp"/>
+
+</definition>
+
+
+<definition name="materialRegister"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="신규 자재 등록"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/material-register.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/material-css.jsp"/>
+
+</definition>
+
+
+<definition name="purchaseOrders"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="발주서 관리"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/purchase-order-list.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/material-css.jsp"/>
+
+</definition>
+
+
+<definition name="purchaseOrderRegister"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="발주서 작성"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/purchase-order-register.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/material-css.jsp"/>
+
+</definition>
+
+<definition name="purchaseOrderForm"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="발주 확인"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/purchase-order-form.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/material-css.jsp"/>
+
+</definition>
+
+
+
+<definition name="myPage"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="내 정보"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/mypage.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/mypage-css.jsp"/>
+
+</definition>
+
+
+
+<definition name="attendance"
+            extends="base">
+
+    <put-attribute
+            name="title"
+            value="근태 관리"/>
+
+    <put-attribute
+            name="body"
+            value="/WEB-INF/views/attendance.jsp"/>
+
+    <put-attribute
+            name="css"
+            value="/WEB-INF/views/attendance-css.jsp"/>
+
+</definition>
+
+
+<definition name="approvals"
+            extends="base">
+
+    <put-attribute name="title"
+                   value="전자결재"/>
+
+    <put-attribute name="body"
+                   value="/WEB-INF/views/approval-list.jsp"/>
+
+    <put-attribute name="css"
+                   value="/WEB-INF/views/approval-css.jsp"/>
+
+</definition>
+
+
+<definition name="approvalWrite"
+            extends="base">
+
+    <put-attribute name="title"
+                   value="기안서 작성"/>
+
+    <put-attribute name="body"
+                   value="/WEB-INF/views/approval-write.jsp"/>
+
+    <put-attribute name="css"
+                   value="/WEB-INF/views/approval-css.jsp"/>
+
+</definition>
+
+
+<definition name="approvalDetail"
+            extends="base">
+
+    <put-attribute name="title"
+                   value="결재 상세"/>
+
+    <put-attribute name="body"
+                   value="/WEB-INF/views/approval-detail.jsp"/>
+
+    <put-attribute name="css"
+                   value="/WEB-INF/views/approval-css.jsp"/>
+
+</definition>
 </tiles-definitions>

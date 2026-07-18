@@ -113,7 +113,11 @@ a {
     margin: 0 0 5px;
     font-size: 21px;
 }
-
+.empId{
+	
+	
+	
+}
 .top-header p {
     margin: 0;
     color: #d6ebf8;
@@ -136,7 +140,6 @@ a {
     background: white;
     border-radius: 12px;
 }
-
 .search-form {
     display: flex;
     align-items: center;
@@ -149,20 +152,36 @@ a {
     font-weight: bold;
 }
 
-.search-form select {
+.search-form select,
+.search-form input {
     width: 160px;
     height: 36px;
     padding: 0 10px;
-    background: white;
+    color: #263944;
+    background: #ffffff;
     border: 1px solid #c5d4de;
     border-radius: 6px;
+    font-family: inherit;
+    font-size: 13px;
     outline: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
-.search-form select:focus {
+.search-form select {
+    cursor: pointer;
+}
+
+.search-form input::placeholder {
+    color: #9baab4;
+}
+
+.search-form select:focus,
+.search-form input:focus {
     border-color: #00558f;
+    box-shadow: 0 0 0 3px rgba(0, 85, 143, 0.1);
 }
-
 /* 버튼 */
 
 .search-button,

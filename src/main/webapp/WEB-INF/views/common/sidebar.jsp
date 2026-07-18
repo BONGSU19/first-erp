@@ -22,23 +22,22 @@
             </a>
         </li>
 
-        <li>
-            <a href="${pageContext.request.contextPath}/materials">
-                ▣ 자재관리
-            </a>
-        </li>
+   <li>
+    <a href="${pageContext.request.contextPath}/materials">
+        ▣ 자재관리
+    </a>
+</li>
 
-        <li>
-            <a href="${pageContext.request.contextPath}/approvals">
-                ✓ 전자결재
-            </a>
-        </li>
-
-        <li>
-            <a href="${pageContext.request.contextPath}/attendance">
-                ◷ 근태관리
-            </a>
-        </li>
+  <li>
+    <a href="${pageContext.request.contextPath}/approvals">
+        ✓ 전자결재
+    </a>
+</li>
+      <li>
+    <a href="${pageContext.request.contextPath}/attendance">
+        ◷ 근태관리
+    </a>
+</li>
     </ul>
 
     <div class="logout">

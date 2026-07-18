@@ -2,7 +2,11 @@ package kr.spring.dashboard.service;
 
 import org.springframework.stereotype.Service;
 
+import kr.spring.approval.repository.ApprovalRepository;
+import kr.spring.attendance.repository.AttendanceRepository;
+import kr.spring.attendance.service.AttendanceService;
 import kr.spring.dashboard.dto.DashboardDTO;
+import kr.spring.material.repository.MaterialRepository;
 import kr.spring.member.entity.EmployeeEntity;
 import kr.spring.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +14,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class DashboardService {
-
+	private final MaterialRepository materialRepository;
     private final MemberRepository memberRepository;
-
+    private final AttendanceService
+    attendanceService;
+    
+    private final ApprovalRepository approvalRepository;
     public DashboardDTO getDashboard(String empId) {
 
         EmployeeEntity employee =
@@ -23,12 +30,27 @@ public class DashboardService {
         dashboard.setEmpName(employee.getEmpName());
         dashboard.setDeptName(employee.getDeptName());
 
-        // 아직 해당 기능을 구현하지 않았으므로 임시 값
-        dashboard.setAttendanceStatus("미출근");
-        dashboard.setPendingApprovalCount(0);
+        String attendanceStatus =
+                attendanceService
+                    .getAttendanceStatus(empId);
+
+        dashboard.setAttendanceStatus(
+            attendanceStatus
+        );
+        
+
+        
+        long count=approvalRepository.countByApprover_EmpIdAndStatus(empId,"PENDING");
+        dashboard.setPendingApprovalCount(count);
         dashboard.setApprovedCount(0);
         dashboard.setRejectedCount(0);
-        dashboard.setLowStockCount(0);
+        long lowStockCount =
+                materialRepository
+                    .countLowStockMaterials();
+
+        dashboard.setLowStockCount(
+            lowStockCount
+        );
         dashboard.setUnreadNotificationCount(0);
 
         return dashboard;

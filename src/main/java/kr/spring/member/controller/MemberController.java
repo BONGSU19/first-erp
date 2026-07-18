@@ -2,6 +2,7 @@
 package kr.spring.member.controller;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -9,12 +10,18 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import kr.spring.member.dto.EmployeeUpdateDTO;
 import kr.spring.member.entity.EmployeeEntity;
 import kr.spring.member.repository.MemberRepository;
+import kr.spring.member.service.EmployeeService;
 
 @Controller
 public class MemberController {
@@ -23,8 +30,8 @@ public class MemberController {
 	private MemberRepository memberRepository;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
-	
+	@Autowired
+	private EmployeeService employeeService;
 	
 	
     // 1. 로그인 화면을 보여주는 메서드
@@ -94,8 +101,42 @@ public class MemberController {
 
         return "redirect:/login?changed";
     }
+    
+    
+    @GetMapping("/employees/{empId}/edit")
+    public String editForm(
+            @PathVariable String empId,
+            Model model) {
 
+        EmployeeUpdateDTO dto =
+            employeeService.getEmployeeForUpdate(empId);
 
+        model.addAttribute("employeeUpdateDTO", dto);
+
+        return "edit";
+    }
+    @PostMapping("/employees/{empId}/edit")
+    public String editEmployee(
+            @PathVariable String empId,
+            @Valid
+            @ModelAttribute("employeeUpdateDTO")
+            EmployeeUpdateDTO dto,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            return "edit";
+        }
+
+        employeeService.updateEmployee(empId, dto);
+
+        redirectAttributes.addFlashAttribute(
+            "message",
+            "사원 정보가 수정되었습니다."
+        );
+
+        return "redirect:/employees";
+    }
     
     @GetMapping("/")
     public String index() {
@@ -103,4 +144,45 @@ public class MemberController {
         // 바로 /login 주소로 강제 이동(Redirect) 시킵니다!
         return "redirect:/login"; 
     }
+    
+    
+    /**
+     * 로그인 사용자 개인정보 페이지
+     */
+    @GetMapping("/mypage")
+    public String myPage(
+            Authentication authentication,
+            Model model) {
+
+        String empId =
+                authentication.getName();
+
+        EmployeeEntity employee =
+                memberRepository.findById(empId)
+                    .orElseThrow(() ->
+                        new IllegalArgumentException(
+                            "사원 정보를 찾을 수 없습니다."
+                        )
+                    );
+
+        /*
+         * 공통 헤더에 로그인 사용자 이름 출력
+         */
+        model.addAttribute(
+            "dashboard",
+            employee
+        );
+
+        /*
+         * 개인정보 페이지에서 사용할 객체
+         */
+        model.addAttribute(
+            "myInfo",
+            employee
+        );
+
+        return "myPage";
+    }
+    
+    
 }

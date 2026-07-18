@@ -105,29 +105,5 @@
 
     </div>
 
-    <!-- 사원 정보 -->
-    <div class="box employee">
-
-        <h3>로그인 사원 정보</h3>
-
-        <table>
-            <thead>
-            <tr>
-                <th>사원명</th>
-                <th>부서</th>
-                <th>출근 상태</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr>
-                <td>⚪ ${dashboard.empName}</td>
-                <td>${dashboard.deptName}</td>
-                <td>${dashboard.attendanceStatus}</td>
-            </tr>
-            </tbody>
-        </table>
-
-    </div>
-
+    
 </section>
