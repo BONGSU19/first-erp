@@ -126,8 +126,6 @@ if (currentStock < quantity) {
 | `PURCHASE_ORDER` | 발주서 관리 |
 | `APPROVAL` | 전자결재 관리 |
 
-> ERD 이미지 추가
-
 <br>
 
 ## 📸 주요 화면
